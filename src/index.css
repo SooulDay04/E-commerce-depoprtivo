@@ -6,3 +6,21 @@ body {
   margin: 0;
   font-family: sans-serif;
 }
+
+@keyframes slideInRight {
+  from { transform: translateX(40px); opacity: 1; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-40px); opacity: 1; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.3s ease forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.3s ease forwards;
+}

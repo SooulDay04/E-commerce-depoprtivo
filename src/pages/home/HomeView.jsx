@@ -1,15 +1,20 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 
 const HomeView = ({ stats, benefits, categories, onExplore, onOffers }) => {
-  const carouselRef = useRef(null);
+const [startIndex, setStartIndex] = useState(0);
+const [direction, setDirection] = useState("right");
 
-  const scrollLeft = () => {
-    carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  };
+const scrollLeft = () => {
+  setDirection("left");
+  setStartIndex((prev) => (prev - 1 + categories.length) % categories.length);
+};
 
-  const scrollRight = () => {
-    carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
-  };
+const scrollRight = () => {
+  setDirection("right");
+  setStartIndex((prev) => (prev + 1) % categories.length);
+};
+
+  
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white font-Bebas Neue">
       {/* NAVBAR */}
@@ -155,47 +160,48 @@ const HomeView = ({ stats, benefits, categories, onExplore, onOffers }) => {
         <div className="relative flex items-center">
           <button
             onClick={scrollLeft}
-            className="ml-25 mr-3 shrink-0 w-14 h-32 bg-[#1a1a1a] hover:bg-[#222] border border-white/10 rounded-xl flex items-center justify-center transition-colors z-10"
+            className="ml-55 mr-3 shrink-0 w-14 h-32 bg-[#1a1a1a] hover:bg-[#222] border border-white/10 rounded-xl flex items-center justify-center transition-colors z-10"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-[#24DB67]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
-          <div
-            ref={carouselRef}
-            className="flex gap-4 overflow-x-auto scroll-smooth pb-2"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {categories.map((cat) => (
-              <div
-                key={cat.id}
-                className="shrink-0 w-56 h-80 rounded-2xl border border-white/10 bg-[#161616] hover:border-[#24DB67]/40 transition-all duration-300 cursor-pointer overflow-hidden relative group"
-              >
-                <div className="absolute inset-0">
-                  {cat.image ? (
-                    <img
-                      src={cat.image}
-                      alt={cat.name}
-                      className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-300"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-[#1a1a1a]" />
-                  )}
-                  <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
+          <div key={startIndex}
+            className={`flex gap-4 overflow-hidden 
+            ${direction === "right" ? "animate-slide-right" : "animate-slide-left"}`}>
+                
+            {[...categories, ...categories]
+                .slice(startIndex, startIndex + 5)
+                .map((cat, i) => (
+                <div
+                    key={i}
+                    className="shrink-0 w-56 h-80 rounded-2xl border border-white/10 bg-[#161616] hover:border-[#24DB67]/40 transition-all duration-300 cursor-pointer overflow-hidden relative group"
+                >
+                    <div className="absolute inset-0">
+                    {cat.image ? (
+                        <img
+                        src={cat.image}
+                        alt={cat.name}
+                        className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-300"
+                        />
+                    ) : (
+            <div className="w-full h-full bg-[#1a1a1a]" />
+          )}
+          <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <p
+                        style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "1.5px" }}
+                        className="text-white text-xl uppercase"
+                    >
+                        {cat.name}
+                    </p>
+                    <p className="text-gray-400 text-xs mt-1">{cat.count} productos</p>
+                    </div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <p
-                    style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: "1.5px" }}
-                    className="text-white text-xl uppercase"
-                  >
-                    {cat.name}
-                  </p>
-                  <p className="text-gray-400 text-xs mt-1">{cat.count} productos</p>
-                </div>
-              </div>
-            ))}
-          </div>
+                ))}
+            </div>
 
           <button
             onClick={scrollRight}
