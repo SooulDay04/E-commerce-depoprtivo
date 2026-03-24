@@ -1,9 +1,9 @@
 import React from "react";
+import MainLayout from "../../layouts/MainLayout";
 import HomeView from "./HomeView";
 
 const HomeController = () => {
   const stats = {
-    cartItems: 3,
     items: [
       { value: "500+", label: "Productos" },
       { value: "50K+", label: "Clientes" },
@@ -31,13 +31,15 @@ const HomeController = () => {
   const handleOffers = () => console.log("Navegar a ofertas");
 
   return (
-    <HomeView
-      stats={stats}
-      benefits={benefits}
-      categories={categories}
-      onExplore={handleExplore}
-      onOffers={handleOffers}
-    />
+    <MainLayout cartItems={0}>
+      <HomeView
+        stats={stats}
+        benefits={benefits}
+        categories={categories}
+        onExplore={handleExplore}
+        onOffers={handleOffers}
+      />
+    </MainLayout>
   );
 };
 
