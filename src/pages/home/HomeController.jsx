@@ -5,9 +5,9 @@ import HomeView from "./HomeView";
 const HomeController = () => {
   const stats = {
     items: [
-      { value: "500+", label: "Productos" },
-      { value: "50K+", label: "Clientes" },
-      { value: "4.9★", label: "Valoración" },
+      { value: "0+", label: "Productos" },
+      { value: "0+", label: "Clientes" },
+      { value: "0★", label: "Valoración" },
     ],
   };
 

@@ -8,7 +8,7 @@ const NavbarView = ({ cartItems }) => {
         </span>
 
         <ul className="hidden md:flex gap-8 text-lg text-gray-300">
-          {["Inicio", "Categorías", "Productos", "Ofertas", "Nosotros"].map((item) => (
+          {["Inicio", "Categorías", "Tienda", "Ofertas", "Nosotros"].map((item) => (
             <li key={item} className="hover:text-green-500 cursor-pointer transition-colors duration-200 font-Trispace">
               {item}
             </li>
