@@ -1,8 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import MainLayout from "../../layouts/MainLayout";
 import HomeView from "./HomeView";
 
 const HomeController = () => {
+   const navigate = useNavigate();
+
   const stats = {
     items: [
       { value: "0+", label: "Productos" },
@@ -27,8 +31,9 @@ const HomeController = () => {
     { id: 6, name: "Natación", count: 0, image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=400&q=80" },
   ];
 
-  const handleExplore = () => console.log("Navegar a tienda");
-  const handleOffers = () => console.log("Navegar a ofertas");
+   const handleExplore = () => navigate("/tienda");
+   const handleOffers = () => navigate("/ofertas");
+
 
   return (
     <MainLayout cartItems={0}>

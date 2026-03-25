@@ -18,7 +18,7 @@ const scrollRight = () => {
     <div className="min-h-screen bg-[#0d0d0d] text-white font-Bebas Neue">
 
       {/* HERO SECTION */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
+      <section id = "inicio" className="relative min-h-screen flex items-center overflow-hidden pt-16">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -103,7 +103,7 @@ const scrollRight = () => {
       </div>
 
       {/* CATEGORIAS */}
-      <section className="bg-[#0d0d0d] px-8 md:px-16 py-20">
+      <section id = "categorias" className="bg-[#0d0d0d] px-8 md:px-16 py-20">
         <div className="mb-10">
           <span className="inline-block bg-[#24DB67]/10 text-[#24DB67] text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
             Categorías
@@ -177,7 +177,7 @@ const scrollRight = () => {
       </section>
 
     {/* FOOTER */}
-      <footer className="border-t border-white/10 bg-[#0d0d0d] py-20 px-8 md:px-16">
+      <footer id = "nosotros" className="border-t border-white/10 bg-[#0d0d0d] py-20 px-8 md:px-16">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
 
           {/* Izquierda - Copyright */}
