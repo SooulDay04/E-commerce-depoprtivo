@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  /* Aquí definimos tu verde exacto */
+  --color-sportixNeon: #39ff14;
+  
+  /* Aquí registramos la fuente Bebas */
+  --font-bebas: "Bebas Neue", sans-serif;
+}
+
 body {
   background-color: #0a0a0a;
   color: white;

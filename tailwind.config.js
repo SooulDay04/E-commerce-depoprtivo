@@ -9,6 +9,9 @@ export default {
       colors: {
         sportixNeon: '#39ff14', // Tu verde neón característico
       },
+      fontFamily: {
+        bebas: ['"Bebas Neue"', 'sans-serif'],
+      }
     },
   },
   plugins: [],
