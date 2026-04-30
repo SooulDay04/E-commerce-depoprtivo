@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Nosotros", path: "/", section: "nosotros", type: "section" },
 ];
 
-const NavbarView = ({ cartItems }) => {
+const NavbarView = ({ cartItems, onCartClick }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -70,7 +70,7 @@ const NavbarView = ({ cartItems }) => {
             <circle cx="12" cy="7" r="4" />
           </svg>
         </Link>
-        <button className="relative text-gray-300 hover:text-green-500 transition-colors">
+        <button onClick={onCartClick} className="relative text-gray-300 hover:text-green-500 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.4 7h12.8M7 13L5.4 5M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
           </svg>

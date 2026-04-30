@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 const StarRating = ({ rating }) => {
   return (
@@ -22,6 +23,7 @@ const StarRating = ({ rating }) => {
 
 const ProductCard = ({ product, isFavorite, onToggleFavorite, onAddToCart }) => {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   
   return (
     <div 
@@ -78,7 +80,7 @@ const ProductCard = ({ product, isFavorite, onToggleFavorite, onAddToCart }) => 
           <button
             onClick={(e) => {
               e.stopPropagation();
-              onAddToCart(product);
+              addToCart(product);
             }}
             className="flex items-center gap-1 bg-[#24DB67] hover:bg-[#1fc45a] text-black font-bold text-xs px-4 py-2 rounded-lg transition-all duration-200 tracking-wide"
           >

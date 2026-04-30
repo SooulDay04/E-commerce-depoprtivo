@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
 import ProductView from "./ProductView";
+import { useCart } from "../../context/CartContext";
 
 // Base de datos temporal de productos (después vendrá de una API)
 const allProducts = [
@@ -279,7 +280,7 @@ const ProductController = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeTab, setActiveTab] = useState("descripcion");
-  const [cart, setCart] = useState([]);
+  const { addToCart } = useCart();
 
   if (!product) {
     return (
@@ -300,12 +301,12 @@ const ProductController = () => {
   }
 
   const handleAddToCart = () => {
-    setCart((prev) => [...prev, product]);
+    addToCart(product, selectedSize);
     console.log(`Agregado: ${product.name} - Talla: ${selectedSize}`);
   };
 
   return (
-    <MainLayout cartItems={cart.length}>
+    <MainLayout cartItems={0}>
       <ProductView
         product={product}
         selectedSize={selectedSize}
