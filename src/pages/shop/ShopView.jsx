@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const StarRating = ({ rating }) => {
   return (
@@ -20,8 +21,13 @@ const StarRating = ({ rating }) => {
 };
 
 const ProductCard = ({ product, isFavorite, onToggleFavorite, onAddToCart }) => {
+  const navigate = useNavigate();
+  
   return (
-    <div className="bg-[#161616] border border-white/8 rounded-2xl overflow-hidden group hover:border-[#24DB67]/30 transition-all duration-300">
+    <div 
+      onClick={() => navigate(`/producto/${product.id}`)}
+      className="bg-[#161616] border border-white/8 rounded-2xl overflow-hidden group hover:border-[#24DB67]/30 transition-all duration-300 cursor-pointer"
+    >
       {/* Image */}
       <div className="relative h-56 overflow-hidden bg-[#1a1a1a]">
         {product.image && (
@@ -33,7 +39,10 @@ const ProductCard = ({ product, isFavorite, onToggleFavorite, onAddToCart }) => 
         )}
         {/* Favorite button */}
         <button
-          onClick={() => onToggleFavorite(product.id)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleFavorite(product.id);
+          }}
           className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-sm hover:bg-black/60 transition-all duration-200"
         >
           <svg
@@ -67,7 +76,10 @@ const ProductCard = ({ product, isFavorite, onToggleFavorite, onAddToCart }) => 
             )}
           </div>
           <button
-            onClick={() => onAddToCart(product)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onAddToCart(product);
+            }}
             className="flex items-center gap-1 bg-[#24DB67] hover:bg-[#1fc45a] text-black font-bold text-xs px-4 py-2 rounded-lg transition-all duration-200 tracking-wide"
           >
             AGREGAR +
